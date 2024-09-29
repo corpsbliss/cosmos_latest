@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotfix Monitoring</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}">
+    <script>
+        // Function to display an alert in the center of the screen
+        function showAlert(message) {
+            const alertBox = document.createElement('div');
+            alertBox.className = 'alert-box';
+            alertBox.innerHTML = `<p>${message}</p><button onclick="this.parentElement.style.display='none';">Close</button>`;
+            document.body.appendChild(alertBox);
+        }
+    </script>
+    <style>
+        /* Style for the table container to enable scrolling */
+        .table-container {
+            max-height: 300px; /* Adjust this height as needed */
+            overflow-y: auto; /* Enable vertical scrolling */
+            border: 1px solid #ccc; /* Optional border for visibility */
+            margin-top: 20px; /* Optional spacing */
+        }
+        .alert-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f44336;
+            color: white;
+            padding: 20px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .alert-box p {
+            margin: 0;
+        }
+        .alert-box button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: white;
+            color: #f44336;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .alert-box button:hover {
+            background-color: #ffbdbd;
+        }
+        /* Centering the input and button */
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+            margin-top: 20px; /* Optional spacing */
+        }
+        .input-container input {
+            width: 600px; /* Adjust width as needed */
+            padding: 10px; /* Padding for input */
+            margin-bottom: 10px; /* Space between input and button */
+        }
+        .input-container button {
+            margin-top: 10px; /* Optional spacing between input and button */
+        }
+        /* Glowing and blinking text for status */
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .status-glow {
+            color: green; /* Green text */
+            text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00; /* Glowing effect */
+            animation: blink 1s infinite; /* Blinking effect */
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <h1 class="main-heading">CMS - Cosmos Monitoring System</h1>
+        <div class="navbar">
+            <a href="{{ url_for('dashboard') }}">Home</a>
+            <a href="{{ url_for('regular_monitoring') }}">Regular Monitoring</a>
+            <a href="{{ url_for('hotfix_monitoring') }}">Hotfix Monitoring</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+
+    <div class="welcome-message">
+        <h2>Welcome to Hotfix Build Monitoring</h2>
+    </div>
+
+    <div class="input-container">
+        <form method="POST" action="{{ url_for('hotfix_monitoring') }}">
+            <input type="text" name="text_input" placeholder="Enter Build URL" required>
+            <button type="submit">Start Tracking</button>
+        </form>
+    </div>
+
+    <div class="additional-container">
+        <h3>All Running Tracking:</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Build URL</th>
+                        <th>Status</th>
+                        <th>Roll Back Build URL</th>
+                        <th>Roll Back CL</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for command in commands %}
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0);" onclick="showAlert('Executing: {{ command['command'] }}');">{{ command['command'] }}</a>
+                            </td>
+                            <td class="status-glow">{{ command['status'] }}</td> <!-- Apply glowing and blinking effect here -->
+                            <td>{{ command['rollback_build_url'] or 'N/A' }}</td>
+                            <td>{{ command['rollback_cl'] or 'N/A' }}</td>
+                            <td>
+                                <form method="POST" action="{{ url_for('remove_command', command_id=command['id']) }}">
+                                    <button type="submit" class="stop-button">Stop</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+/* General page styling with background image and fallback gradient */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6); /* Fallback gradient */
+    background-image: url("background.jpg"); /* Background image */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    animation: backgroundAnimation 10s infinite alternate;
+}
+
+/* Background animation (optional) */
+@keyframes backgroundAnimation {
+    0% {
+        background-size: 100%;
+    }
+    100% {
+        background-size: 105%;
+    }
+}
+
+/* Styling for the main heading outside the container */
+.main-heading {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Floating animation for the login container */
+@keyframes floating {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Login container styling */
+.login-container {
+    background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent background */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    animation: zoomIn 0.8s ease-out, floating 3s ease-in-out infinite;
+}
+
+/* Login form heading */
+.login-container h1 {
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 32px;
+}
+
+/* Form group styling and animations */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards;
+}
+
+.form-group:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.form-group:nth-child(2) {
+    animation-delay: 0.7s;
+}
+
+.form-group:nth-child(3) {
+    animation-delay: 0.9s;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 16px;
+}
+
+/* Input fields and button styling to be the same size */
+.form-group input,
+.form-group button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Input fields specific styling */
+.form-group input {
+    border: 1px solid #ccc;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+/* Focus effect for input fields */
+.form-group input:focus {
+    border-color: transparent;
+    outline: none;
+    box-shadow: 0 0 8px rgba(113, 183, 230, 0.7);
+    background: linear-gradient(90deg, #71b7e6, #9b59b6); /* Gradient background on focus */
+}
+
+/* Shimmer animation for input fields */
+@keyframes shimmer {
+    0% {
+        background-position: -100%;
+    }
+    100% {
+        background-position: 100%;
+    }
+}
+
+/* Button styling with hover and active animations */
+.form-group button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+.form-group button:hover {
+    background-color: #218838;
+    box-shadow: 0 0 15px 5px rgba(40, 167, 69, 0.5);
+}
+
+.form-group button:active {
+    transform: scale(0.98);
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
+}
+
+/* Flash message styling */
+.messages {
+    list-style: none;
+    padding: 0;
+    animation: fadeIn 1.2s ease;
+}
+
+.messages li {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.messages .success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.messages .danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

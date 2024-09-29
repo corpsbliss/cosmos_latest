@@ -1,0 +1,202 @@
+/* General page styling with background image and fallback gradient */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6); /* Fallback gradient */
+    background-image: url("../images/background.jpg"); /* Background image */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    animation: backgroundAnimation 10s infinite alternate;
+}
+
+/* Background animation (optional) */
+@keyframes backgroundAnimation {
+    0% {
+        background-size: 100%;
+    }
+    100% {
+        background-size: 105%;
+    }
+}
+
+/* Styling for the main heading outside the container */
+.header-container {
+    background-color: rgba(30, 30, 30, 0.8); /* Dark background */
+    padding: 10px;
+    text-align: center;
+    width: 100%; /* Full width */
+}
+
+/* Main heading styling */
+.main-heading {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Navbar styling */
+.navbar {
+    margin: 10px 0;
+}
+
+.navbar a {
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+}
+
+/* Welcome message styling */
+.welcome-message {
+    color: white;
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Input container styling */
+.input-container {
+    background-color: rgba(30, 30, 30, 0.8); /* Dark background */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-width: 600px; /* Match the width of the additional container */
+    width: 90%; /* Responsive width */
+    margin: 20px auto; /* Center the container */
+    color: white; /* White text for visibility */
+}
+
+/* Textarea styling */
+.input-container input {
+    width: 95%;
+    height: 40px; /* Height for one line */
+    border-radius: 4px;
+    border: none;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent */
+    color: white; /* White text color */
+}
+
+/* Button styling */
+.input-container button {
+    background-color: #28a745; /* Green button */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 250px;
+}
+
+/* Additional container styling */
+.additional-container {
+    background-color: rgba(30, 30, 30, 0.8); /* Dark background */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-width: 100%; /* Match the width of the input container */
+    width: 90%; /* Responsive width */
+    margin: 20px auto; /* Center the container */
+    color: white; /* White text for visibility */
+}
+
+/* Table styling */
+.additional-container table {
+    width: 100%; /* Full width */
+    border-collapse: collapse; /* Remove gaps between borders */
+    margin-top: 20px; /* Space above table */
+}
+
+.additional-container th, .additional-container td {
+    border: 1px solid #ddd; /* Light gray border */
+    padding: 8px; /* Cell padding */
+    text-align: left; /* Left-align text */
+}
+
+.additional-container th {
+    background-color: rgba(30, 30, 30, 0.8); /* Dark background for header */
+    color: white; /* White text color */
+}
+
+.additional-container td {
+    background-color: rgba(255, 255, 255, 0.1); /* Light transparent background for rows */
+    color: white; /* White text for visibility */
+}
+
+.additional-container a {
+    color: #1e90ff; /* Link color */
+    text-decoration: none; /* Remove underline */
+}
+
+.additional-container a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.flash-messages {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.flash-messages .alert {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.navbar {
+    background-color: rgba(30, 30, 30, 0.8);
+    padding: 10px;
+    text-align: center;
+}
+
+.navbar a {
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.stop-button {
+    background-color: #ff4d4d; /* Red background */
+    color: white; /* White text */
+    padding: 8px 12px; /* Padding for the button */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.stop-button:hover {
+    background-color: #ff1a1a; /* Darker red on hover */
+}
